@@ -8,7 +8,6 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class HeroService {
-
   constructor(
     private messageService: MessageService
   ) { }
@@ -17,5 +16,10 @@ export class HeroService {
     this.messageService.addMessage('HeroService: fetched heroes');
 
     return of(HEROES);
+  }
+
+  getHeroe(id: number): Observable<Hero> {
+    this.messageService.addMessage(`HeroService: fetched hero id=${id}`);
+    return of(HEROES.find(hero => hero.id === id));
   }
 }
